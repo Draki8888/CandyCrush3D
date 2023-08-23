@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1eb607c185fb54f9e5344b0f1e090d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candyPrefab: {fileID: 1211757783780545899, guid: 255d5978f517dcb40a0f6b78ee689c1e,
+  ballPrefab: {fileID: 1211757783780545899, guid: 255d5978f517dcb40a0f6b78ee689c1e,
     type: 3}
 --- !u!4 &1839424802
 Transform:

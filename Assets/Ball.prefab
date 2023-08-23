@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2742176706791403054}
   - component: {fileID: 1211757783780545899}
   m_Layer: 0
-  m_Name: Candy
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
