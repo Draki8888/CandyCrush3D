@@ -37,7 +37,7 @@ public class Compass
             yield return start;
             yield break;
         }
-        var direction = (end - start) / Sum(end - start); 
+        var direction = (end - start) / Mathf.Abs(Sum(end - start)); 
         
         var current = start;
         yield return current;
