@@ -19,7 +19,7 @@ public class LevelGen : MonoBehaviour
 
     void Start()
     {
-        compass = new Compass(Vector3Int.forward, CubeSize);
+        compass = new Compass(Vector3Int.down, CubeSize);
 
         List<Color> colorList = new List<Color>
         {
@@ -87,22 +87,25 @@ public class LevelGen : MonoBehaviour
         var hangingBalls = GetAllHangingBalls();
         foreach (var hangingBall in hangingBalls)
         {
-            foreach (Vector3Int position in compass.IterateColumnAbove(hangingBall.GridPosition))
+            var groundBallPos = GetFirstBallBelow(hangingBall);
+            foreach ((Vector3Int position,int index) in compass.IterateColumnAbove(hangingBall.GridPosition).Select((b,i) => (b,i) ))
             {
                 var ball = ballsDict[position];
-                if(ball != null)
-                {
-                    ball.Color = Color.black;
-                }
+                ball.transform.LeanMove(groundBallPos - compass.GravityAxis * index, 0.5f).setDelay(index * 0.1f).setEaseInQuad();
             }
 
-            var groundBall = GetFirstBallBelow(hangingBall);
         }
     }
 
-    private Ball GetFirstBallBelow(Ball hangingBall)
-    {
-        return null;
+    private Vector3Int GetFirstBallBelow(Ball hangingBall) {
+        var allBallsBelow = compass.IterateColumnBelow(hangingBall.GridPosition).Skip(1);
+        foreach (var ballBelow in allBallsBelow) {
+            if (ballsDict[ballBelow] != null) {
+                return ballBelow - compass.GravityAxis;
+            }
+        }
+
+        return compass.GetBottom(hangingBall.GridPosition);
     }
 
 
